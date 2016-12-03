@@ -12,4 +12,9 @@ public class StringUtil {
 		}
 		return out.toString();
 	}
+	public static boolean isBlank(String s)  {
+		if(s==null||s.trim().equals(""))return true;
+		else return false;
+	}
+	
 }
