@@ -19,7 +19,7 @@ public abstract class AEvent implements IConsume{
 	@Override
 	public boolean consume(String msg) throws Exception {
 		details=basicAnalyse(msg);
-		if(!flag.equals(details[0])) throw new Exception();//抛出异常就表消化失败
+		if(!flag.equals(details[0])) throw new Exception(flag+" "+details[0]);//抛出异常就表消化失败
 		return true;
 	}
 	public String[] basicAnalyse(String msg){

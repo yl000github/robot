@@ -31,15 +31,19 @@ public abstract class ABasic implements IHook{
 	}
 	Date recordStartTime;
 	String path;
+	protected boolean isRecord=false;
 	private void store(String msg){ 
-		long t;
-		try { 
-			t=getCurTime();
-		} catch (ErrorException e) {
-			throw new RuntimeException(e.getMessage());
+//		System.out.println(isRecord);
+		if(isRecord){
+			long t;
+			try { 
+				t=getCurTime();
+			} catch (ErrorException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+			msg+=",currentTime="+t;
+			FileUtil.writeAdd(path, msg+"\n");
 		}
-		msg+=",currentTime="+t;
-		FileUtil.writeAdd(path, msg+"\n");
 	}
 	protected void sleep(long duration){
 		try {

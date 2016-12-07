@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-	public static void createFile(String filepath) throws IOException {
+	public static void createFile(String filepath,boolean overwrite) throws IOException {
 		File f = new File(filepath);
 		if (!f.exists()) {
 			String parent = f.getParent();
@@ -22,6 +22,10 @@ public class FileUtil {
 			if (!p.exists())
 				p.mkdirs();
 			f.createNewFile();
+		}else{
+			if(overwrite){
+				write(filepath, "");
+			}
 		}
 	}
 
@@ -37,7 +41,7 @@ public class FileUtil {
 
 	public static void writeAdd(String filepath, String content) {
 		try {
-			createFile(filepath);
+			createFile(filepath,false);
 			FileWriter fw = new FileWriter(filepath, true);
 			fw.write(content);
 			fw.close();
@@ -138,7 +142,7 @@ public class FileUtil {
 		
 	}
 	public static void main(String[] args) throws IOException {
-		reappearChange();
+//		reappearChange();
 //		String c = "hello yang";
 //		String filepath = "D:\\git\\myself\\src\\main\\java";
 //		System.out.println(getFilesLines(filepath,"java"));
@@ -148,5 +152,6 @@ public class FileUtil {
 //		System.out.println(getFilesLines("D:\\HbuilderWorkspace\\omp\\client\\app","js"));
 		// write(filepath, c);
 		// System.out.println(read(filepath));
+		createFile("e:/111.txt", true);
 	}
 }

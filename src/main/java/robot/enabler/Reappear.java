@@ -75,6 +75,7 @@ public class Reappear{
 				if(consumers[i].consume(msg)) return true;
 			} catch (Exception e) {
 				//有问题，继续,罗列原因
+//				e.printStackTrace();
 			}
 		}
 		throw new ErrorException("该行未被处理："+msg);
